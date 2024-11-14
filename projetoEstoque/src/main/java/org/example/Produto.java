@@ -37,7 +37,7 @@ public class Produto {
         int quantidade = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Digite o preço do produto (use ponto para decimais):");
+        System.out.println("Digite o preço do produto (use ponto.para decimais):");
         String precoStr = scanner.nextLine();
 
         try {

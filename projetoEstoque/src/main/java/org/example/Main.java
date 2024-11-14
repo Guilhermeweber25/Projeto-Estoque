@@ -11,7 +11,7 @@ public class Main {
         do {
             System.out.println("1 - Cadastrar Produto");
             System.out.println("2 - Exibir Produtos");
-            System.out.println("3 - Sair");
+            System.out.println("3 - Sair.");
             escolha = scanner.nextInt();
             scanner.nextLine();
 
