@@ -55,18 +55,21 @@ public class Produto {
 
     public void exibirProdutos() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nLista de produtos cadastrados:");
         System.out.println("Digite o nome do produto: ");
         String nomeBuscar = scanner.nextLine();
-
-
+        boolean ProdutoEncontrado = false;
+        System.out.println("\nLista de produtos cadastrados:");
         for (Produto p : produtos) {
-            System.out.println("Nome: " + p.getNome() + " valor: " + p.getPreco() + " código: " + p.getCodigo() + " Quantidade: " + p.getQuantidade());
-            System.out.println();
+            if (p.getNome().equalsIgnoreCase(nomeBuscar)){
+                System.out.println("Nome: " + p.getNome() + " valor: " + p.getPreco() + " código: " + p.getCodigo() + " Quantidade: " + p.getQuantidade());
+                System.out.println();
+                ProdutoEncontrado = true;
+            }
+        }
+        if (!ProdutoEncontrado){
+            System.out.println("Produto não encontrado!");
         }
     }
-
-
     public String getNome() { return nome; }
     public int getCodigo() { return codigo; }
     public float getPreco() { return preco; }
