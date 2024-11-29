@@ -20,7 +20,7 @@ public class Produto {
     }
 
     public void cadastrarProduto() {
-        Locale.setDefault(Locale.US);
+        Locale.setDefault(Locale.US);  // Define o Locale para usar ponto (.) como separador decimal
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite o nome do produto:");
@@ -32,23 +32,28 @@ public class Produto {
 
         System.out.println("Digite quantidade do produto:");
         int quantidade = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine();  // Limpa o buffer
 
-        System.out.println("Digite o preço do produto (use ponto.para decimais):");
-        String precoStr = scanner.nextLine();
+        System.out.println("Digite o preço do produto (use ponto para decimais):");
 
-        try {
-            float preco = Float.parseFloat(precoStr);
-
-            // Cria um novo objeto Produto e o adiciona à lista
-            Produto novoProduto = new Produto(nome, codigo, preco, quantidade);
-            produtos.add(novoProduto);
-            System.out.println("Produto cadastrado com sucesso!");
-
-        } catch (NumberFormatException e) {
-            System.out.println("Erro: Formato de preço inválido. Use ponto como separador decimal.");
+        float preco = 0;
+        boolean precoValido = false;
+        while (!precoValido) {
+            try {
+                preco = scanner.nextFloat();
+                precoValido = true; // Se a conversão foi bem-sucedida, sai do loop
+            } catch (InputMismatchException e) {
+                System.out.println("Erro: Formato de preço inválido. Use ponto como separador decimal.");
+                scanner.nextLine();  // Limpa o buffer de entrada para tentar novamente
+            }
         }
+
+        // Cria um novo objeto Produto e o adiciona à lista
+        Produto novoProduto = new Produto(nome, codigo, preco, quantidade);
+        produtos.add(novoProduto);
+        System.out.println("Produto cadastrado com sucesso!");
     }
+
 
     public void exibirProdutos() {
         Scanner scanner = new Scanner(System.in);
@@ -121,6 +126,10 @@ public class Produto {
         }
     }
 
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
     public void buscarProduto() {
         Scanner scanner = new Scanner(System.in);
 
@@ -160,4 +169,5 @@ public class Produto {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
 }

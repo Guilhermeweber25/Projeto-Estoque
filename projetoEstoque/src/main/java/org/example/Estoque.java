@@ -50,4 +50,19 @@ public class Estoque {
             System.out.println("Quantidade do produto atualizada com sucesso!");
         }
     }
+
+
+        public void resolverMochila(int capacidadeMaxima) {
+            KnapsackSolver solver = new KnapsackSolver(capacidadeMaxima);
+            List<Produto> selecionados = solver.resolver(produtos);
+
+            System.out.println("\nProdutos selecionados para a mochila:");
+            for (Produto produto : selecionados) {
+                produto.exibirDetalhes();
+                System.out.println("-----------------------");
+            }
+
+            System.out.println("Capacidade restante: " + capacidadeMaxima);
+        }
+
 }
