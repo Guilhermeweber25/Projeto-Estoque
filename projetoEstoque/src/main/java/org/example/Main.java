@@ -7,30 +7,49 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         Produto produto = new Produto();
+        Estoque estoque = new Estoque();
 
         do {
-            System.out.println("1 - Cadastrar Produto");
-            System.out.println("2 - Exibir Produtos");
-            System.out.println("3 - Sair.");
+            System.out.println("\n--- Sistema de Controle de Estoque ---");
+            System.out.println("1 - Cadastrar produto");
+            System.out.println("2 - Exibir todos os produtos");
+            System.out.println("3 - Atualizar produto");
+            System.out.println("4 - Remover produto");
+            System.out.println("5 - Buscar produto");
+            System.out.println("6 - Sair");
+            System.out.print("Escolha uma opção: ");
+
             escolha = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Limpa o buffer
 
             switch (escolha) {
                 case 1:
                     produto.cadastrarProduto();
                     break;
                 case 2:
-                    produto.exibirProdutos();
+                    estoque.listarProdutos();
                     break;
                 case 3:
+                    produto.atualizarProduto();
+                    break;
+                case 4:
+                    System.out.print("Digite o código do produto a ser removido: ");
+                    int codigoRemover = scanner.nextInt();
+                    estoque.removerProduto(codigoRemover);
+                    break;
+                case 5:
+                    System.out.print("Digite o código do produto a ser buscado: ");
+                    int codigoBuscar = scanner.nextInt();
+                    estoque.buscarProduto(codigoBuscar);
+                    break;
+                case 6:
                     System.out.println("Encerrando programa...");
-                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Opção inválida!");
+                    System.out.println("Opção inválida! Tente novamente.");
                     break;
             }
-        } while (escolha != 3);
+        } while (escolha != 6);
 
         scanner.close();
     }
